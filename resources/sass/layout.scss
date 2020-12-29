@@ -1,0 +1,36 @@
+//Estilização e reset
+*{
+    padding: 0;
+    margin: 0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0;
+}
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+footer {
+    margin-top: auto;
+}
+
+
+// Minhas Classes
+$layout-bg: #120a8f;
+
+$theme-colors:(
+    "layout-bg": $layout-bg,
+);
+
+
+// Classes Personalizadas
+
+@import '~bootstrap/scss/bootstrap';
+
