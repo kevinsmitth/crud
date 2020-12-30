@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>KS - @yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('images/ks.png') }}" >
     <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
-
+    @yield('css')
 </head>
 <body>
     <header>
@@ -17,9 +18,26 @@
                 </a>
 
                 <ul class="d-flex mt-3">
-                    <li class="mx-2"><a href="{{ route('login') }}">Entrar</a></li>
-                    <li class="mx-2"><a href="{{ route('register') }}">Registrar</a></li>
-                    <li class="mx-2"><a href="#">Ver Membros</a></li>
+                    @if (!Auth::check())
+                        <li class="mx-2"><a href="{{ route('login') }}">Entrar</a></li>
+                        <li class="mx-2"><a href="{{ route('register') }}">Registrar</a></li>
+                    @endif
+
+                    <li class="mx-2"><a href="{{ route('membros') }}">Ver Membros</a></li>
+
+                    @if(Auth::check())
+                        <li class="mx-2"><a href="#">Dashboard</a></li>
+                        <li class="mx-2">
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                Sair
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </nav>
@@ -37,5 +55,6 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/popper.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+    @yield('js')
 </body>
 </html>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class MembersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('home.index', compact('user'));
+        $members = User::all();
+
+        return view('members.index', compact('members'));
     }
 
     /**
